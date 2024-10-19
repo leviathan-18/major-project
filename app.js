@@ -106,24 +106,14 @@ app.use("/listings/:id/reviews",reviewRouter);
 app.use("/",userRouter);
 
 
-
-
-/*app.use((err, req, res) => {
-    console.error(err); // Log the error for debugging
-    const statusCode = err.statusCode || 500; // Default to 500 if statusCode is not set
-    const message = err.message || "Internal Server Error"; // Default message
-
-    res.status(statusCode).render("error.ejs", { err: { message, statusCode } });
-});*/
-
-
-app.all("*",(req,res,next)=>{
-    next(new ExpressError(404,"page not found"));
-})
-app.use((err, req, res, next) => {
+/*app.use((err, req, res, next) => {
     const { status = 500, message = "Something went wrong" } = err;
     res.status(status).send({ error: message });
-});
+});*/
+
+/*app.all("*",(req,res,next)=>{
+    next(new ExpressError(404,"page not found"));
+})*/
 
 /*app.use((err,req,res,next)=>{
     //console.log(err);
@@ -134,7 +124,13 @@ app.use((err, req, res, next) => {
     next();
 })*/
 
+app.use((err, req, res) => {
+    console.error(err); // Log the error for debugging
+    const statusCode = err.statusCode || 500; // Default to 500 if statusCode is not set
+    const message = err.message || "Internal Server Error"; // Default message
 
+    res.status(statusCode).render("error.ejs", { err: { message, statusCode } });
+});
 
 app.listen(8080,()=>{
     console.log("server is listening to port");

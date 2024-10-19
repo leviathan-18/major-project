@@ -70,9 +70,9 @@ const sessionOptions={
     }
 };
 
-app.get("/",(req,res)=>{
+/*app.get("/",(req,res)=>{
     res.send("HII ! I AM ROOT");
-});
+});*/
 
 
 
@@ -104,7 +104,7 @@ app.use((req,res,next)=>{
 
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
-app.use("/",userRouter);
+app.get("/",userRouter);
 
 
 /*app.use((err, req, res, next) => {

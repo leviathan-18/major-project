@@ -102,9 +102,9 @@ app.use((req,res,next)=>{
     res.send(registeredUser);
 })*/
 
-app.get("/listings",listingRouter);
-app.get("/listings/:id/reviews",reviewRouter);
-app.get("/",userRouter);
+app.use("/listings",listingRouter);
+app.use("/listings/:id/reviews",reviewRouter);
+app.use("/",userRouter);
 
 
 /*app.use((err, req, res, next) => {

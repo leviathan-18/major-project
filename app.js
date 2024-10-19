@@ -105,9 +105,15 @@ app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
 app.use("/",userRouter);
 
-/*app.all("*",(req,res,next)=>{
+
+app.use((err, req, res, next) => {
+    const { status = 500, message = "Something went wrong" } = err;
+    res.status(status).send({ error: message });
+});
+
+app.all("*",(req,res,next)=>{
     next(new ExpressError(404,"page not found"));
-})*/
+})
 
 /*app.use((err,req,res,next)=>{
     //console.log(err);

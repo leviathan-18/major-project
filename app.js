@@ -102,8 +102,8 @@ app.use((req,res,next)=>{
     res.send(registeredUser);
 })*/
 
-app.use("/listings",listingRouter);
-app.use("/listings/:id/reviews",reviewRouter);
+app.get("/listings",listingRouter);
+app.get("/listings/:id/reviews",reviewRouter);
 app.get("/",userRouter);
 
 
